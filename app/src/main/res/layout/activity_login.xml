@@ -139,7 +139,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppinsregular"
                 android:textStyle="bold"
-                android:backgroundTint="@android:color/transparent" />
+                android:backgroundTint="@color/white" />
 
         </LinearLayout>
 

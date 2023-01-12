@@ -11,4 +11,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="name">Name</string>
     <string name="save">Save</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="lorem_note">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="card_template">Card Template</string>
 </resources>
