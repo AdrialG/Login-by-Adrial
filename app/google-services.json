@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "934471017492",
+    "project_id": "notes-by-adrial-rework",
+    "storage_bucket": "notes-by-adrial-rework.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934471017492:android:d1dbacbdcaa7bf43d03301",
+        "android_client_info": {
+          "package_name": "com.example.notesbyadrialrework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934471017492-u7h8mdmea8psttfobefjhavoj0f9onnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd1IyZ_NgHidq7PDKrj1VbRKN4hltWvvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934471017492-u7h8mdmea8psttfobefjhavoj0f9onnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

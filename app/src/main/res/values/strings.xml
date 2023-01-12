@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Notes by Adrial Rework</string>
+    <string name="notes_by_adrial">Notes by Adrial</string>
+    <string name="login_with_your_credentials_to_continue">Login with your credentials to continue</string>
+    <string name="example_gmail_com">example@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="by_adrial">by adrial</string>
+</resources>
