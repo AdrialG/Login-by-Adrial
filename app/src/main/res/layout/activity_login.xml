@@ -79,12 +79,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:fontFamily="@font/poppinsregular"
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:textSize="20sp"
                     android:ems="20" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -101,14 +104,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:fontFamily="@font/poppinsregular"
                 app:passwordToggleEnabled="true"
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:ems="14" />
+                    android:layout_height="60dp"
+                    android:textSize="20sp"
+                    android:ems="20" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,6 +129,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <Button
+                android:id="@+id/buttontohome"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="@string/login"

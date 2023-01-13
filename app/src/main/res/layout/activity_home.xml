@@ -20,7 +20,9 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="search bar"
+            app:tint="@color/light_grey" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchhome"
@@ -29,6 +31,7 @@
             android:layout_margin="30dp"
             android:elevation="20dp"
             android:layoutDirection="rtl"
+            style="@style/EdittextColour"
             app:searchIcon="@mipmap/searhhomemini"
             app:queryHint="@string/search_notes"
             app:defaultQueryHint="@string/search_notes"
@@ -70,6 +73,8 @@
             android:layout_height="match_parent"
             app:menu="@menu/bottomnav"
             android:layoutDirection="ltr"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
