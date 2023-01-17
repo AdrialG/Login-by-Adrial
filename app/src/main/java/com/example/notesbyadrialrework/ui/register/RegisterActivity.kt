@@ -1,4 +1,4 @@
-package com.example.notesbyadrialrework.register
+package com.example.notesbyadrialrework.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.notesbyadrialrework.R
 import com.example.notesbyadrialrework.databinding.ActivityRegisterBinding
-import com.example.notesbyadrialrework.login.LoginActivity
+import com.example.notesbyadrialrework.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

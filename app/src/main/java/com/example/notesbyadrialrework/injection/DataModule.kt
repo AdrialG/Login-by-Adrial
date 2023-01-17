@@ -29,10 +29,11 @@ class DataModule {
     fun provideAppDatabase(@ApplicationContext context: Context) = AppDatabase.getDatabase(context)
 
     @Provides
-    fun provideGson(): GsonBuilder = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+    fun provideGson()= GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
 
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
+
         val unsafeTrustManager = SSLTrust().createUnsafeTrustManager()
         val sslContext = SSLContext.getInstance("SSL")
         sslContext.init(null, arrayOf(unsafeTrustManager), null)

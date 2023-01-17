@@ -18,9 +18,9 @@ abstract class AppDatabase : RoomDatabase() {
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    /* context = */ context.applicationContext,
-                    /* klass = */ AppDatabase::class.java,
-                    /* name = */ "login api"
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "notes by adrial rework"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

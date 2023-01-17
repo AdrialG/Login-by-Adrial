@@ -1,4 +1,4 @@
-package com.example.notesbyadrialrework.home
+package com.example.notesbyadrialrework.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

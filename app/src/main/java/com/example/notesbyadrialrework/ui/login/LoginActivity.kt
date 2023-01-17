@@ -1,4 +1,4 @@
-package com.example.notesbyadrialrework.login
+package com.example.notesbyadrialrework.ui.login
 
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
@@ -11,8 +11,8 @@ import com.crocodic.core.extension.textOf
 import com.example.notesbyadrialrework.R
 import com.example.notesbyadrialrework.base.BaseActivity
 import com.example.notesbyadrialrework.databinding.ActivityLoginBinding
-import com.example.notesbyadrialrework.home.HomeActivity
-import com.example.notesbyadrialrework.register.RegisterActivity
+import com.example.notesbyadrialrework.ui.home.HomeActivity
+import com.example.notesbyadrialrework.ui.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -55,6 +55,5 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layou
                 }
             }
         }
-
     }
 }

@@ -1,4 +1,4 @@
-package com.example.notesbyadrialrework.splash
+package com.example.notesbyadrialrework.ui.splash
 
 import androidx.lifecycle.viewModelScope
 import com.example.notesbyadrialrework.base.BaseViewModel
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(): BaseViewModel() {
     fun splash(done: () -> Unit) = viewModelScope.launch {
-        delay(3000)
+        delay(2000)
         done()
     }
 }

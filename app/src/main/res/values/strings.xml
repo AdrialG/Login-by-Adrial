@@ -15,4 +15,10 @@
     <string name="lorem_note">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="card_template">Card Template</string>
     <string name="fill_please">Fill before proceeding</string>
+    <string name="back_button">back button</string>
+    <string name="profile">Profile</string>
+    <string name="example_text">Example Text</string>
+    <string name="example_gmail">example@gmail.com</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
 </resources>
