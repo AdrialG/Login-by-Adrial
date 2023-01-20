@@ -3,11 +3,14 @@ package com.example.notesbyadrialrework.ui.login
 import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
+import com.crocodic.core.api.ApiObserver.Companion.apiObserver
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.api.ApiStatus
+import com.crocodic.core.data.CoreSession
 import com.crocodic.core.extension.toObject
 import com.example.notesbyadrialrework.api.ApiService
 import com.example.notesbyadrialrework.base.BaseViewModel
+import com.example.notesbyadrialrework.data.Const
 import com.example.notesbyadrialrework.data.User
 import com.example.notesbyadrialrework.data.UserDao
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,26 +18,51 @@ import org.json.JSONObject
 import javax.inject.Inject
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val apiService: ApiService, private val gson: Gson, private val userDao: UserDao): BaseViewModel() {
+class LoginViewModel @Inject constructor(private val apiService: ApiService, private val gson: Gson, private val userDao: UserDao, private val session: CoreSession): BaseViewModel() {
 
     fun login(email: String, password: String) = viewModelScope.launch {
         _apiResponse.send(ApiResponse().responseLoading("Hang Tight..."))
-        ApiObserver({ apiService.login(email, password) }, false, object : ApiObserver.ResponseListener {
+        ApiObserver(
+            { apiService.login(email, password) }, false, object : ApiObserver.ResponseListener {
             override suspend fun onSuccess(response: JSONObject) {
-                val status = response.getInt(ApiCode.STATUS)
-                if (status == ApiCode.SUCCESS) {
-                    val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
-                    userDao.insert(data.copy(idRoom = 1))
-                    _apiResponse.send(ApiResponse().responseSuccess())
+
+                Timber.d("DataLogin : $response")
+
+                val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
+
+                userDao.insert(data.copy(idRoom = 1))
+                _apiResponse.send(ApiResponse().responseSuccess("Congratulations, welcome"))
+            }
+                override suspend fun onError(response: ApiResponse) {
+                    super.onError(response)
+                    _apiResponse.send(ApiResponse().responseError())
                 }
 
-                else {
-                    val message = response.getString(ApiCode.MESSAGE)
-                    _apiResponse.send(ApiResponse(status = ApiStatus.ERROR, message = message))
-                }
-            }
         })
     }
+
+    fun getToken() {
+        viewModelScope.launch {
+         ApiObserver(
+             block = {apiService.getToken()},
+             toast = false,
+             responseListener = object : ApiObserver.ResponseListener {
+                 override suspend fun onSuccess(response: JSONObject) {
+
+                         val token = response.getString("token")
+                         session.setValue(Const.TOKEN.API_TOKEN,token)
+
+                 }
+
+                 override suspend fun onError(response: ApiResponse) {
+                     super.onError(response)
+                 }
+             }
+         )
+        }
+    }
+
 }

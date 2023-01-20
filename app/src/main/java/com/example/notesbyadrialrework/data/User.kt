@@ -13,12 +13,14 @@ data class User(
     val idRoom: Int,
     @Expose
     @SerializedName("id")
-    val id: Int?,
+    val id: String,
     @Expose
     @SerializedName("name")
     val name: String?,
     @SerializedName("email")
     val email: String?,
     @SerializedName("photo")
-    val photo : String?
+    val photo : String?,
+    @SerializedName("password")
+    val password : String?
 )

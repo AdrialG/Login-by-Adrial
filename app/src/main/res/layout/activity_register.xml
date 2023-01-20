@@ -61,8 +61,11 @@
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name_register"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@drawable/edit_text_background"
                     android:textSize="20sp"
                     android:ems="20" />
 
@@ -84,8 +87,11 @@
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email_register"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@drawable/edit_text_background"
                     android:textSize="20sp"
                     android:ems="20" />
 
@@ -108,8 +114,12 @@
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password_register"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="textPassword"
                     android:textSize="20sp"
                     android:ems="20" />
 
@@ -132,8 +142,12 @@
                 android:theme="@style/TextInputLayout_overlay">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ett_password_confirm_register"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@drawable/edit_text_background"
+                    android:inputType="textPassword"
                     android:textSize="20sp"
                     android:ems="20" />
 

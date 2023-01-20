@@ -11,42 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="30dp"
-            android:elevation="20dp"
-            android:src="@mipmap/searchbg"
-            android:scaleType="fitXY"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="search bar"
-            app:tint="@color/light_grey" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchhome"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="30dp"
-            android:elevation="20dp"
-            android:layoutDirection="rtl"
-            style="@style/EdittextColour"
-            app:searchIcon="@mipmap/searhhomemini"
-            app:queryHint="@string/search_notes"
-            app:defaultQueryHint="@string/search_notes"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            tools:listitem="@layout/template_note"
-            app:layout_constraintTop_toBottomOf="@id/searchhome"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -69,6 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:menu="@menu/bottomnav"
