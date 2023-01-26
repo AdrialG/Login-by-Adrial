@@ -30,8 +30,9 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("user/profile")
-    suspend fun getProfile(
+    suspend fun getUser(
         @Field("name") name: String?,
         @Field("email") email: String?,
+        @Field("photo") photo: String?
     ): String
 }

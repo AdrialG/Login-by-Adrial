@@ -17,10 +17,13 @@ data class User(
     @Expose
     @SerializedName("name")
     val name: String?,
+    @Expose
     @SerializedName("email")
     val email: String?,
+    @Expose
     @SerializedName("photo")
     val photo : String?,
+    @Expose
     @SerializedName("password")
     val password : String?
 )

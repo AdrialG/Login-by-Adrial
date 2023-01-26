@@ -5,18 +5,32 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.crocodic.core.extension.openActivity
 import com.example.notesbyadrialrework.R
+import com.example.notesbyadrialrework.base.SharedPreference
+import com.example.notesbyadrialrework.databinding.ActivityAddNoteBinding
 import com.example.notesbyadrialrework.databinding.ActivityHomeBinding
+import com.example.notesbyadrialrework.ui.addnote.AddNoteActivity
 import com.example.notesbyadrialrework.ui.profile.Profile
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityHomeBinding
+
+    private lateinit var sharedPref : SharedPreference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sharedPref = SharedPreference(this)
         replaceFragment(Home())
+
+        binding.floatingActionButton.setOnClickListener {
+            openActivity<AddNoteActivity>()
+        }
 
         binding.bottomNav.setOnItemSelectedListener {
 

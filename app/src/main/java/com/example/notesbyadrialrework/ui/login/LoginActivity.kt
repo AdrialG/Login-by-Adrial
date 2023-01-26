@@ -13,6 +13,7 @@ import com.crocodic.core.extension.textOf
 import com.crocodic.core.helper.DateTimeHelper
 import com.example.notesbyadrialrework.R
 import com.example.notesbyadrialrework.base.BaseActivity
+import com.example.notesbyadrialrework.base.SharedPreference
 import com.example.notesbyadrialrework.data.Const
 import com.example.notesbyadrialrework.databinding.ActivityLoginBinding
 import com.example.notesbyadrialrework.ui.home.HomeActivity
@@ -29,8 +30,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layou
    @Inject
    lateinit var session : CoreSession
 
+    private lateinit var sharedPref : SharedPreference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref = SharedPreference(this)
 
         tokenAPI()
 
@@ -45,11 +49,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layou
             val password = binding.etPassword.textOf()
 
             viewModel.login(email, password)
+
+            sharedPref.loginStatus(true)
         }
 
         binding.buttontoregister.setOnClickListener {
             openActivity<RegisterActivity>() {
-                finish()
             }
         }
 

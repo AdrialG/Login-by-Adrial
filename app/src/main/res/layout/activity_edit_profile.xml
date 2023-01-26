@@ -66,9 +66,10 @@
             android:theme="@style/TextInputLayout_overlay">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:background="@drawable/edit_text_background"
                 android:textSize="20sp"
                 android:ems="20" />
 

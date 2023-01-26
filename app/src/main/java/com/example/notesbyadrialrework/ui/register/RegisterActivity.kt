@@ -23,7 +23,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
 
         binding.registerbackbutton.setOnClickListener {
             openActivity<LoginActivity>()
-            finish()
         }
 
         binding.registersave.setOnClickListener {
