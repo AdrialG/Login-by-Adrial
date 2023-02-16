@@ -10,6 +10,7 @@ import com.crocodic.core.data.CoreSession
 import com.crocodic.core.extension.toObject
 import com.example.notesbyadrialrework.api.ApiService
 import com.example.notesbyadrialrework.base.BaseViewModel
+import com.example.notesbyadrialrework.data.BaseObserver
 import com.example.notesbyadrialrework.data.Const
 import com.example.notesbyadrialrework.data.User
 import com.example.notesbyadrialrework.data.UserDao
@@ -21,20 +22,26 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val apiService: ApiService, private val gson: Gson, private val userDao: UserDao, private val session: CoreSession): BaseViewModel() {
+class LoginViewModel @Inject constructor(private val apiService: ApiService, private val gson: Gson, private val userDao: UserDao, private val session: CoreSession, private val observe: BaseObserver): BaseViewModel() {
 
     fun login(email: String, password: String) = viewModelScope.launch {
         _apiResponse.send(ApiResponse().responseLoading("Hang Tight..."))
-        ApiObserver(
-            { apiService.login(email, password) }, false, object : ApiObserver.ResponseListener {
+        observe(
+            block = { apiService.login(email, password) },
+            toast = false,
+            responseListener = object : ApiObserver.ResponseListener {
             override suspend fun onSuccess(response: JSONObject) {
 
                 Timber.d("DataLogin : $response")
 
                 val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
 
+                val token = response.getString("token")
+                session.setValue(Const.TOKEN.API_TOKEN,token)
+
                 userDao.insert(data.copy(idRoom = 1))
-                _apiResponse.send(ApiResponse().responseSuccess("Congratulations, welcome"))
+                _apiResponse.send(ApiResponse().responseSuccess(
+                ))
             }
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)

@@ -6,6 +6,7 @@ import com.crocodic.core.helper.okhttp.SSLTrust
 import com.example.notesbyadrialrework.BuildConfig
 import com.example.notesbyadrialrework.api.ApiService
 import com.example.notesbyadrialrework.data.AppDatabase
+import com.example.notesbyadrialrework.data.BaseObserver
 import com.example.notesbyadrialrework.data.Const
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
@@ -80,5 +81,8 @@ class DataModule {
             .client(okHttpClient)
             .build().create(ApiService::class.java)
     }
+
+    @Provides
+    fun provideBaseObserver(apiService: ApiService, session: CoreSession): BaseObserver = BaseObserver(apiService, session)
 
 }

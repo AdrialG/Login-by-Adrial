@@ -1,15 +1,33 @@
 package com.example.notesbyadrialrework.data
 
-import androidx.room.ColumnInfo
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "notesTable")
-class Note (
-    @ColumnInfo(name = "title") val noteTitle : String,
-    @ColumnInfo(name = "content") val noteContent : String,
-    @ColumnInfo(name = "timestamp") val timeStamp : String
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id = 0
-}
+
+@Parcelize
+@Entity
+data class Note(
+    @PrimaryKey(autoGenerate = false)
+    @Expose
+    @SerializedName("idRoom")
+    val idRoom: Int,
+    @Expose
+    @SerializedName("id")
+    val id: String?,
+    @Expose
+    @SerializedName("title")
+    val title : String?,
+    @Expose
+    @SerializedName("content")
+    val note: String?,
+    @Expose
+    @SerializedName("created_at")
+    val createdAt: Long?,
+    @Expose
+    @SerializedName("updated_at")
+    val updatedAt: Long?,
+) : Parcelable

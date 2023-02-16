@@ -24,4 +24,6 @@
     <string name="pass_match">Passwords do not match</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_button">update button</string>
+    <string name="delete_button">delete button</string>
 </resources>

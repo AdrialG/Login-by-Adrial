@@ -64,5 +64,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
             }
         }
 
+
+
     }
 }

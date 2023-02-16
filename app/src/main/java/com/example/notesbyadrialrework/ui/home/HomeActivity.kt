@@ -2,15 +2,13 @@ package com.example.notesbyadrialrework.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.forEach
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.crocodic.core.extension.openActivity
 import com.example.notesbyadrialrework.R
 import com.example.notesbyadrialrework.base.SharedPreference
-import com.example.notesbyadrialrework.databinding.ActivityAddNoteBinding
 import com.example.notesbyadrialrework.databinding.ActivityHomeBinding
 import com.example.notesbyadrialrework.ui.addnote.AddNoteActivity
+import com.example.notesbyadrialrework.ui.home.fragment.FragmentHomeActivity
 import com.example.notesbyadrialrework.ui.profile.Profile
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sharedPref = SharedPreference(this)
-        replaceFragment(Home())
+        replaceFragment(FragmentHomeActivity())
 
         binding.floatingActionButton.setOnClickListener {
             openActivity<AddNoteActivity>()
@@ -36,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
             when(it.itemId) {
 
-                R.id.btn_home -> replaceFragment(Home())
+                R.id.btn_home -> replaceFragment(FragmentHomeActivity())
                 R.id.btn_profile -> replaceFragment(Profile())
 
                 else ->{

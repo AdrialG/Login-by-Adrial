@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.crocodic.core.extension.tos
 import com.example.notesbyadrialrework.R
 import com.example.notesbyadrialrework.base.BaseFragment
@@ -28,27 +30,29 @@ class Profile : BaseFragment<ActivityProfileBinding>(R.layout.activity_profile) 
         super.onCreate(savedInstanceState)
     }
 
-   /* override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.activity_profile, container, false)
-    }*/
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
             viewModel.getUser.observe(requireActivity()) { data ->
                 data?.let {
+
                     binding?.user = it
 
                     binding?.exampleTextName?.text  = it.name
                     binding?.exampleTextEmail?.text = it.email
+
+                    binding?.let { viewImage ->
+                        Glide
+                            .with(requireContext())
+                            .load(it.photo)
+                            .placeholder(R.drawable.ic_baseline_person_24)
+                            .error(R.drawable.ic_baseline_person_24)
+                            .apply(RequestOptions.centerCropTransform())
+                            .into(viewImage.profilePicture)
+                    }
                 }
             }
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                launch {} }
         }
 
         binding?.buttonEditProfile?.setOnClickListener {

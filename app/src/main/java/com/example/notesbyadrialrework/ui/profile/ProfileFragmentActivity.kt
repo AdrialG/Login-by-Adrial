@@ -33,9 +33,9 @@ class ProfileFragmentActivity : BaseActivity<ActivityProfileBinding, ProfileFrag
                 Toast.makeText(this@ProfileFragmentActivity, "ini user : ${it.name}", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.buttonLogout.setOnClickListener {
+        /*binding.buttonLogout.setOnClickListener {
             viewModel.logout {
             }
-        }
+        }*/
     }
 }
