@@ -25,7 +25,7 @@
             app:tint="@color/light_grey" />
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchhome"
+            android:id="@+id/search_home"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="30dp"

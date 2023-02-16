@@ -1,6 +1,7 @@
 package com.example.notesbyadrialrework.ui.home.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,7 @@ class FragmentHomeActivity : BaseFragment<FragmentHomeBinding>(R.layout.fragment
     private val viewModel by activityViewModels<FragmentHomeViewModel>()
 
     private var note = ArrayList<Note?>()
+    private var noteAll = ArrayList<Note?>()
 
     private lateinit var rvNote: View
 
@@ -53,6 +55,30 @@ class FragmentHomeActivity : BaseFragment<FragmentHomeBinding>(R.layout.fragment
         val rvNote = view.findViewById<RecyclerView>(R.id.note_display)
 
         getNote()
+
+        binding?.searchHome?.doOnTextChanged { text, start, before, count ->
+            if (text!!.isNotEmpty()) {
+                val filter = noteAll.filter { it?.title?.contains("$text", true) == true }
+//                val filteringData =
+//                    noteAll.filter { it?.note?.contains(text.toString(), true) == true }
+                Log.d("Filter Check", "Keyword $text Data : $filter")
+                note.clear()
+//                note.addAll(filter)
+                filter.forEach {
+                    note.add(it)
+                }
+
+                binding?.noteDisplay?.adapter?.notifyDataSetChanged()
+                binding?.noteDisplay?.adapter?.notifyItemInserted(0)
+
+            } else {
+                note.clear()
+                binding?.noteDisplay?.adapter?.notifyDataSetChanged()
+                note.addAll(noteAll)
+                Log.d("Check All Note", "noteall : $noteAll")
+                binding?.noteDisplay?.adapter?.notifyItemInserted(0)
+            }
+        }
 
         rvNote.adapter = CoreListAdapter<TemplateNoteBinding, Note>(R.layout.template_note)
             .initItem(note) { position, data ->
@@ -98,5 +124,15 @@ class FragmentHomeActivity : BaseFragment<FragmentHomeBinding>(R.layout.fragment
         viewModel.getNote()
 //        activity?.tos("Note Loaded")
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        Log.d("Keyword", "$newText")
+        return false
+    }
+
 
 }
