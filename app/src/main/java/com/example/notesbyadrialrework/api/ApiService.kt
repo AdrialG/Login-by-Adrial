@@ -44,8 +44,8 @@ interface ApiService {
     @Multipart
     @PATCH("user/profile")
     suspend fun updateProfileWithPic(
-        @Field("name") name: String?,
-        @Field("photo") photo: MultipartBody.Part
+        @Part("name") name: String?,
+        @Part photo: MultipartBody.Part?
     ): String
 
     @FormUrlEncoded

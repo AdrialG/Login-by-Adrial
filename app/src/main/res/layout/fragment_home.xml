@@ -24,15 +24,13 @@
             android:contentDescription="search bar"
             app:tint="@color/light_grey" />
 
-        <androidx.appcompat.widget.SearchView
+        <EditText
             android:id="@+id/search_home"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="30dp"
             android:elevation="20dp"
-            android:layoutDirection="rtl"
             style="@style/EdittextColour"
-            app:searchIcon="@mipmap/searhhomemini"
             app:queryHint="@string/search_notes"
             app:defaultQueryHint="@string/search_notes"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +45,7 @@
             android:layout_margin="30dp"
             tools:listitem="@layout/template_note"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/searchhome"
+            app:layout_constraintTop_toBottomOf="@id/search_home"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

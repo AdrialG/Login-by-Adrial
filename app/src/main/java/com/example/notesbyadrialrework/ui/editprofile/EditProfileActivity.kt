@@ -49,61 +49,36 @@ class EditProfileActivity :
 
     private var username: String? = null
     private var filePhoto: File? = null
-//    val profilePictureEdit = findViewById<CircleImageView>(R.id.profile_picture_edit)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        /*lifecycleScope.launch {
-            viewModel.getUser.observe() { data ->
-                data?.let {
-
-                    binding.useredit = it
-
-                    binding.etNameEdit.text  = it.name
-
-                    binding.let { viewImage ->
-                        Glide
-                            .with(requireContext())
-                            .load(it.photo)
-                            .placeholder(R.drawable.ic_baseline_person_24)
-                            .error(R.drawable.ic_baseline_person_24)
-                            .apply(RequestOptions.centerCropTransform())
-                            .into(viewImage.profilePictureEdit)
-                    }
-                }
-            }
-        }*/
+        binding.etNameEdit.setText(username)
 
         initClick()
         observe()
+
     }
 
     private fun initClick() {
 
         //Button Back
         binding.editprofilebackbutton.setOnClickListener {
-            openActivity<HomeActivity> {  }
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
             finish()
-//            val intent = Intent(this, HomeActivity::class.java)
-//            startActivity(intent)
         }
-
 
         binding.editprofilesave.setOnClickListener {
             validateForm()
-            openActivity<HomeActivity> {  }
             finish()
         }
 
-        binding.profilePictureEdit.setOnClickListener {
-            if (checkPermissionGallery()) {
+        binding.profilePictureButton.setOnClickListener {
+//            if (checkPermissionGallery()) {
                 openGallery()
-            } else {
-                requestPermissionGallery()
-            }
-
-            tos("clicked")
+//            } else {
+//                requestPermissionGallery()
+//            }
         }
     }
 
@@ -115,7 +90,7 @@ class EditProfileActivity :
                         when (it.status) {
                             ApiStatus.LOADING -> loadingDialog.show("Updating...")
                             ApiStatus.SUCCESS -> {
-                                tos(it.message ?: "Update Confirmed")
+                                tos(it.message ?: "Profile Updated")
                                 loadingDialog.dismiss()
                                 openActivity<EditProfileActivity>()
                                 finish()
@@ -134,17 +109,18 @@ class EditProfileActivity :
         }
     }
 
+
     private fun validateForm() {
         val name = binding.etNameEdit.textOf()
 
         if (name.isEmpty()) {
-            tos("Name shouldn't be empty")
+            tos("Name can't be empty")
             return
         }
 
         if (filePhoto == null) {
             if (name == username) {
-                tos("Nothing has been changed")
+                tos("Nothing's changed")
                 return
             }
             viewModel.updateProfile(name)
@@ -158,7 +134,9 @@ class EditProfileActivity :
                 }
             }
         }
+
     }
+
 
     //MultiPart Gallery , photo not Done yet
     private var activityLauncherGallery =
@@ -202,9 +180,10 @@ class EditProfileActivity :
             if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                 openGallery()
             } else {
-                Toast.makeText(this, "Gallery Access Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Access Denied", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     // Generate Image File
@@ -244,12 +223,12 @@ class EditProfileActivity :
             }
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-            binding.profilePictureEdit.setImageBitmap(bitmap)
+            binding.profilePictureButton.setImageBitmap(bitmap)
             filePhoto = file
             Log.d("checkfile", "file : $filePhoto")
         } catch (e: Exception) {
             e.printStackTrace()
-            binding.root.snacked("You can't use this")
+            binding.root.snacked("You can't use this file")
         }
     }
 
@@ -325,11 +304,11 @@ class EditProfileActivity :
         return file
     }
 
-    private suspend fun compressFile(filePhoto: File): File? {
+    suspend fun compressFile(filePhoto: File): File? {
         println("Compress 1")
-        return try {
+        try {
             println("Compress 2")
-            Compressor.compress(this, filePhoto) {
+            return Compressor.compress(this, filePhoto) {
                 resolution(720, 720)
                 quality(50)
                 format(Bitmap.CompressFormat.JPEG)
@@ -337,10 +316,12 @@ class EditProfileActivity :
             }
         } catch (e: Exception) {
             println("Compress 3")
-            tos("Compression Failed :(")
+            tos("Compress Failed")
             e.printStackTrace()
-            null
+            return null
         }
+
     }
+
 
 }
